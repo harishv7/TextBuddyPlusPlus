@@ -246,7 +246,12 @@ public class TextBuddy {
 	}
 	
 	static String sortFileContents() {
-		return fileName + " has nothing to sort";
+		if(storeText.isEmpty()) {
+			return fileName + " has nothing to sort";
+		} else {
+			java.util.Collections.sort(storeText);
+			return fileName + " has been sorted alphabetically";
+		}
 	}
 
 	private static String searchFileContents(String userInput) {
