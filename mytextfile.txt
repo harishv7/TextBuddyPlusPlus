@@ -1,0 +1,14 @@
+Camel
+Penguin
+Buffalo
+Hippopotamus
+Eagle
+Meerkat
+Reindeer
+Zebra
+Shark
+Gorilla
+Rabbit
+Koala
+Flamingo
+Elephant
