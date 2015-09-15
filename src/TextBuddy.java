@@ -245,17 +245,17 @@ public class TextBuddy {
 		displayMessage(lineToDisplay);
 	}
 	
-	static String sortFileContents() {
+	static String sortFileContents() throws IOException {
 		if(storeText.isEmpty()) {
 			return fileName + " has nothing to sort";
 		} else {
 			java.util.Collections.sort(storeText);
+			saveFile();
 			return fileName + " has been sorted alphabetically";
 		}
 	}
 
 	private static String searchFileContents(String userInput) {
-		
 		return userInput;
 	}
 
@@ -360,7 +360,7 @@ public class TextBuddy {
 		writer.close();
 	}
 
-	private static void displayFileContents() {
+	static void displayFileContents() {
 		if (storeText.size() == 0) {
 			displayFileEmptyMessage();
 		} else {

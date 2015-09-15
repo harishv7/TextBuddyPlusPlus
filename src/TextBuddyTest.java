@@ -45,7 +45,6 @@ public class TextBuddyTest {
 		TextBuddy.addToFile("Elephant");
 		
 		assertEquals(fileName + " has been sorted alphabetically", TextBuddy.sortFileContents());
+		TextBuddy.displayFileContents();
 	}
-	
-	
 }
