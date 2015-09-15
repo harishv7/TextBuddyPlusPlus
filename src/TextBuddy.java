@@ -246,7 +246,7 @@ public class TextBuddy {
 	}
 	
 	static String sortFileContents() {
-		
+		return fileName + " has nothing to sort";
 	}
 
 	private static String searchFileContents(String userInput) {

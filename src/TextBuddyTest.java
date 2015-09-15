@@ -2,14 +2,14 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class TextBuddyTest {
 	
 	private static final String fileName = "mytextfile.txt";
 	
-	//TextBuddy textBuddy = new TextBuddy();
-	
+	@Before
 	public void intialiseProgram() throws IOException {
 		TextBuddy.setFileName(fileName);
 		TextBuddy.getFileReady();
