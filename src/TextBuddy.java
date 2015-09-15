@@ -100,7 +100,7 @@ public class TextBuddy {
 	// This array stores the lines of text in a file
 	private static ArrayList<String> storeText;
 
-	public static void main(String[] args) throws IOException {
+	public void startProgram(String[] args) throws IOException {
 		validateArguments(args);
 		printWelcomeMessage();
 		getFileReady();
@@ -132,7 +132,7 @@ public class TextBuddy {
 	 * scanner object and the arraylist to store the text.
 	 * If the text file does not already exist, it creates a new file.
 	 */
-	private static void getFileReady() throws IOException {
+	static void getFileReady() throws IOException {
 		textFile = new File(fileName);
 		if (!textFile.exists()) {
 			textFile.createNewFile();
@@ -155,7 +155,9 @@ public class TextBuddy {
 	}
 
 	private static void displayMessage(String message) {
-		System.out.println(message);
+		if(!message.equals("")) {
+			System.out.println(message);
+		}
 	}
 
 	private static void getInputUntilUserExits() throws IOException {
@@ -209,9 +211,11 @@ public class TextBuddy {
 	 * @throws IOException when there is a problem in manipulating the file 
 	 */
 	private static void runCommand(CommandType userCommand, String userInput) throws IOException {
+		String lineToDisplay = "";
+		
 		switch (userCommand) {
 		  case ADD :
-			  addToFile(userInput);
+			  addToFile(getLineToAdd(userInput));
 			  break;
 		  case DELETE :
 			  deleteFromFile(userInput);
@@ -223,7 +227,7 @@ public class TextBuddy {
 			  displayFileContents();
 			  break;
 		  case SORT :
-			  sortFileContents();
+			  lineToDisplay = sortFileContents();
 			  break;
 		  case SEARCH :
 			  searchFileContents(userInput);
@@ -237,8 +241,19 @@ public class TextBuddy {
 		  default :
 			  return;
 		}
+		
+		displayMessage(lineToDisplay);
 	}
 	
+	static String sortFileContents() {
+		
+	}
+
+	private static String searchFileContents(String userInput) {
+		
+		return userInput;
+	}
+
 	/*
 	 * This operation deletes the user-specified line of text from the file.
 	 * 
@@ -295,7 +310,7 @@ public class TextBuddy {
 		System.out.println(String.format(MESSAGE_DELETED, fileName, lineDeleted));
 	}
 
-	private static void clearFile() throws IOException {
+	static void clearFile() throws IOException {
 		storeText.clear();
 		saveFile();
 		displayFileClearedMessage();
@@ -314,12 +329,14 @@ public class TextBuddy {
 		System.exit(SYSTEM_EXIT_SUCCESS);
 	}
 
-	private static void addToFile(String userInput) throws IOException {
-		String lineToAdd = "";
-		lineToAdd = userInput.substring(INDEX_OF_LINE_TO_ADD);
+	static void addToFile(String lineToAdd) throws IOException {
 		storeText.add(lineToAdd);
 		saveFile();
 		displayAddSuccessMessage(lineToAdd);
+	}
+	
+	private static String getLineToAdd(String userInput) {
+		return userInput.substring(INDEX_OF_LINE_TO_ADD);
 	}
 
 	private static void displayAddSuccessMessage(String lineAdded) {
@@ -351,5 +368,13 @@ public class TextBuddy {
 
 	private static void displayFileEmptyMessage() {
 		System.out.println(String.format(MESSAGE_FILE_EMPTY, fileName));
+	}
+	
+	public static String getFileName() {
+		return fileName;
+	}
+	
+	public static void setFileName(String nameOfFile) {
+		fileName = nameOfFile;
 	}
 }
